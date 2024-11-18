@@ -58,7 +58,7 @@ contradiction(circular_nephew) :- nephew(X, Y), nephew(Y, X).                   
 
 contradiction(self_child) :- child(X,X).                                            % Self-child contradiction
 contradiction(self_parent) :- parent(X, X).                                         % Self-parent contradiction
-contradiction(self_cousin) :- cousin(X, X).                                     % Self-cousin contradiction
+contradiction(self_cousin) :- cousin(X, X).                                         % Self-cousin contradiction
 contradiction(self_grandparent) :- grandparent(X, X).                               % Self-grandparent contradiction
 contradiction(self_sibling) :- sibling(X, X).                                       % Self-sibling contradiction
 
@@ -69,6 +69,9 @@ contradiction(sibling_child) :- sibling(X, Y), child(X, Z), parent(Z, Y).       
 
 contradiction(parent_gender_mismatch) :- parent(X, Y), male(X), mother(X, Y).       % Gender mismatch of mother
 contradiction(parent_gender_mismatch) :- parent(X, Y), female(X), father(X, Y).     % Gender mismatch of father
+contradiction(child_gender_mismatch) :- son(X, Y), female(X), parent(Y, X).         % Gender mismatch of son
+contradiction(child_gender_mismatch) :- daughter(X, Y), male(X), parent(Y, X).       % Gender mismatch of daugther
+
 
 contradiction(incest_parent_child) :- parent(X, Y), (husband(X, Y) ; wife(X, Y)).        % Incest Parent X Child
 contradiction(incest_sibling) :- sibling(X, Y), (husband(X, Y) ; wife(X, Y)).            % Incest Sibling X Sibling
