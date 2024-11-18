@@ -68,3 +68,10 @@ contradiction(incest_sibling) :- sibling(X, Y), (husband(X, Y) ; wife(X, Y)).   
 contradiction(incest_grandparent) :- grandparent(X, Y), (husband(X, Y) ; wife(X, Y)).    % Incest Grandparent X Grandchild
 contradiction(incest_niece_nephew_parent) :- parent(X, Y), (uncle(Y, X) ; aunt(Y, X) ; niece(Y, X) ; nephew(Y, X)).     % Incest Uncle/Aunt/Niece/Nephew X Uncle/Aunt/Niece/Nephew
 contradiction(incest_sibling_extended) :- sibling(X, Y), (uncle(X, Y) ; aunt(X, Y) ; niece(X, Y) ; nephew(X, Y)).       % Incest Sibling = Uncle/Aunt/Niece/Nephew
+
+contradiction(circular_cousin) :- cousin(X, X).                                      % Self-cousin contradiction
+contradiction(circular_uncle) :- uncle(X, X).                                        % Self-uncle contradiction
+contradiction(circular_aunt) :- aunt(X, X).                                      % Self-aunt contradiction
+contradiction(circular_nephew) :- nephew(X, X).                                      % Self-nephew contradiction
+contradiction(circular_niece) :- niece(X, X).                                      % Self-niece contradiction
+
