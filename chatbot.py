@@ -432,6 +432,26 @@ def handle_statement(prolog, statement):
             return "OK! I learned something."
         else:
             return "Oops! Something went wrong."
+        
+    # Handle "X and Y are cousins."
+    cousin_match = re.match(r"([a-z]+) and ([a-z]+) are cousins\.", statement)
+
+    if cousin_match:
+        # Parse the input
+        cousin1, cousin2 = cousin_match.groups()
+        print(cousin1, cousin2) # DEBUG
+
+        # TODO add checks for contradictions
+
+        # Add the facts
+        add_cousin1 = add_fact(prolog, f"cousin('{cousin1}', '{cousin2}')")
+        add_cousin2 = add_fact(prolog, f"cousin('{cousin2}', '{cousin1}')")
+
+        # Return appropriate output
+        if add_cousin1 and add_cousin2:
+            return "OK! I learned something."
+        else:
+            return "Oops! Something went wrong."
 
     # At the end of the function, refresh all facts
     refresh_facts(prolog)
