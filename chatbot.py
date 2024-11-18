@@ -33,7 +33,7 @@ def handle_help():
     print("\t___ is the mother of ___.")
     print("\t___ and ___ are the parents of ___.")
     print("\t___ is a grandmother of ___.")
-    print("\t___ is a grandmother of ___.")
+    print("\t___ is a grandfather of ___.")
     print("\t___ is a child of ___.")
     print("\t___, ___ and ___ are children of ___.")
     print("\t___ is a daughter of ___.")
