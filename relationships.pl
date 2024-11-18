@@ -55,6 +55,7 @@ contradiction(circular_aunt) :- aunt(X, Y), aunt(Y, X).                         
 contradiction(circular_niece) :- niece(X, Y), niece(Y, X).                          % Circular niece relationship
 contradiction(circular_nephew) :- nephew(X, Y), nephew(Y, X).                       % Circular nephew relationship
 
+contradiction(parent_grandchild) :- parent(X, Y), parent(Y, Z), parent(Z, X).       % Circular extended parent relationship
 
 contradiction(self_child) :- child(X,X).                                            % Self-child contradiction
 contradiction(self_parent) :- parent(X, X).                                         % Self-parent contradiction
@@ -69,15 +70,15 @@ contradiction(self_spouse) :- spouse(X, X).                                     
 contradiction(self_child) :- child(X, X).                                           % Self-child contradiction
 contradiction(self_grandchild) :- grandchild(X, X).                                 % Self-grandchild contradiction
 
-contradiction(gender_conflict) :- male(X), female(X).                               % Gender mismatch
 contradiction(sibling_and_parent) :- sibling(X, Y), parent(X, Y).                   % Sibling-parent contradiction
 contradiction(sibling_child) :- sibling(X, Y), child(X, Z), parent(Z, Y).           % Sibling-Child Contradiction
 
+contradiction(gender_conflict) :- male(X), female(X).                               % Gender mismatch
 contradiction(parent_gender_mismatch) :- parent(X, Y), male(X), mother(X, Y).       % Gender mismatch of mother
 contradiction(parent_gender_mismatch) :- parent(X, Y), female(X), father(X, Y).     % Gender mismatch of father
 contradiction(child_gender_mismatch) :- son(X, Y), female(X), parent(Y, X).         % Gender mismatch of son
 contradiction(child_gender_mismatch) :- daughter(X, Y), male(X), parent(Y, X).      % Gender mismatch of daughter
-
+contradiction(parent_gender_mismatch) :- father(X, Y), mother(X, Y).                % Gender mismatch of parent
 
 contradiction(incest_parent_child) :- parent(X, Y), (husband(X, Y) ; wife(X, Y)).                                       % Incest Parent X Child
 contradiction(incest_sibling) :- sibling(X, Y), (husband(X, Y) ; wife(X, Y)).                                           % Incest Sibling X Sibling
