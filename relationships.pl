@@ -50,6 +50,7 @@ cousin(X, Y) :- child(X, W), child(Y, Z), sibling(W, Z), X \= Y, W \= Z.
 contradiction(circular_parent) :- parent(X, Y), parent(Y, X).                       % Circular parent-child relationship
 contradiction(circular_grandparent) :- grandparent(X, Y), grandparent(Y, X).        % Circular grandparent-grandchild relationship
 
+contradiction(self_child) :- child(X,X).                                            % Self-child contradiction
 contradiction(self_parent) :- parent(X, X).                                         % Self-parent contradiction
 contradiction(circular_cousin) :- cousin(X, X).                                     % Self-cousin contradiction
 contradiction(self_grandparent) :- grandparent(X, X).                               % Self-grandparent contradiction
