@@ -74,4 +74,4 @@ contradiction(circular_uncle) :- uncle(X, X).                                   
 contradiction(circular_aunt) :- aunt(X, X).                                      % Self-aunt contradiction
 contradiction(circular_nephew) :- nephew(X, X).                                      % Self-nephew contradiction
 contradiction(circular_niece) :- niece(X, X).                                      % Self-niece contradiction
-
+contradiction(circular_spouse) :- spouse(X, X).                                    % Self-spouse contradiction
