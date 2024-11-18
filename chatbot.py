@@ -135,7 +135,7 @@ def handle_statement(prolog, statement):
         # Add the facts
         add_parent = add_fact(prolog, f"parent('{mother}', '{child}')")
         add_child = add_fact(prolog, f"child('{child}', '{mother}')")
-        add_sex = add_fact(prolog, f"male('{mother}')")
+        add_sex = add_fact(prolog, f"female('{mother}')")
 
         # Return appropriate output
         if add_parent and add_child and add_sex:
