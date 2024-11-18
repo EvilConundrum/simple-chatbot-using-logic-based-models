@@ -48,16 +48,16 @@ cousin(X, Y) :- child(X, W), child(Y, Z), sibling(W, Z), X \= Y, W \= Z.
 
 % Contradictions
 contradiction(circular_parent) :- parent(X, Y), parent(Y, X).                       % Circular parent-child relationship
+contradiction(circular_grandparent) :- grandparent(X, Y), grandparent(Y, X).        % Circular grandparent-grandchild relationship
+
 contradiction(self_parent) :- parent(X, X).                                         % Self-parent contradiction
+contradiction(circular_cousin) :- cousin(X, X).                                     % Self-cousin contradiction
+contradiction(self_grandparent) :- grandparent(X, X).                               % Self-grandparent contradiction
+
 
 contradiction(gender_conflict) :- male(X), female(X).                               % Gender contradiction
 
 contradiction(sibling_and_parent) :- sibling(X, Y), parent(X, Y).                   % Sibling-parent contradiction
-
-contradiction(circular_grandparent) :- grandparent(X, Y), grandparent(Y, X).        % Circular grandparent-grandchild relationship
-
-contradiction(self_grandparent) :- grandparent(X, X).                               % Self-grandparent contradiction
-
 contradiction(sibling_child) :- sibling(X, Y), child(X, Z), parent(Z, Y).           % Sibling-Child Contradiction
 
 contradiction(parent_gender_mismatch) :- parent(X, Y), male(X), mother(X, Y).       % Gender mismatch of mother
@@ -66,8 +66,5 @@ contradiction(parent_gender_mismatch) :- parent(X, Y), female(X), father(X, Y). 
 contradiction(incest_parent_child) :- parent(X, Y), (husband(X, Y) ; wife(X, Y)).        % Incest Parent X Child
 contradiction(incest_sibling) :- sibling(X, Y), (husband(X, Y) ; wife(X, Y)).            % Incest Sibling X Sibling
 contradiction(incest_grandparent) :- grandparent(X, Y), (husband(X, Y) ; wife(X, Y)).    % Incest Grandparent X Grandchild
-
 contradiction(incest_niece_nephew_parent) :- parent(X, Y), (uncle(Y, X) ; aunt(Y, X) ; niece(Y, X) ; nephew(Y, X)).     % Incest Uncle/Aunt/Niece/Nephew X Uncle/Aunt/Niece/Nephew
 contradiction(incest_sibling_extended) :- sibling(X, Y), (uncle(X, Y) ; aunt(X, Y) ; niece(X, Y) ; nephew(X, Y)).       % Incest Sibling = Uncle/Aunt/Niece/Nephew
-
-contradiction(circular_cousin) :- cousin(X, X).                                      % Self-cousin contradiction
