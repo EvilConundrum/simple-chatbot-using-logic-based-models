@@ -69,11 +69,10 @@ contradiction(incest_grandparent) :- grandparent(X, Y), (husband(X, Y) ; wife(X,
 contradiction(incest_niece_nephew_parent) :- parent(X, Y), (uncle(Y, X) ; aunt(Y, X) ; niece(Y, X) ; nephew(Y, X)).     % Incest Uncle/Aunt/Niece/Nephew X Uncle/Aunt/Niece/Nephew
 contradiction(incest_sibling_extended) :- sibling(X, Y), (uncle(X, Y) ; aunt(X, Y) ; niece(X, Y) ; nephew(X, Y)).       % Incest Sibling = Uncle/Aunt/Niece/Nephew
 
-contradiction(circular_cousin) :- cousin(X, X).                                      % Self-cousin contradiction
-contradiction(circular_uncle) :- uncle(X, X).                                        % Self-uncle contradiction
-contradiction(circular_aunt) :- aunt(X, X).                                      % Self-aunt contradiction
-contradiction(circular_nephew) :- nephew(X, X).                                      % Self-nephew contradiction
-contradiction(circular_niece) :- niece(X, X).                                      % Self-niece contradiction
-contradiction(circular_spouse) :- spouse(X, X).                                    % Self-spouse contradiction
-contradiction(circular_child) :- child(X, X).                                    % Self-child contradiction
-contradiction(circular_grandchild) :- grandchild(X, X).                                    % Self-grandchild contradiction
+contradiction(self_uncle) :- uncle(X, X).                                        % Self-uncle contradiction
+contradiction(self_aunt) :- aunt(X, X).                                      % Self-aunt contradiction
+contradiction(self_nephew) :- nephew(X, X).                                      % Self-nephew contradiction
+contradiction(self_niece) :- niece(X, X).                                      % Self-niece contradiction
+contradiction(self_spouse) :- spouse(X, X).                                    % Self-spouse contradiction
+contradiction(self_child) :- child(X, X).                                    % Self-child contradiction
+contradiction(self_grandchild) :- grandchild(X, X).                                    % Self-grandchild contradiction
