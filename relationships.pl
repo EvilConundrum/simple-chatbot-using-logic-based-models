@@ -52,7 +52,7 @@ contradiction(circular_grandparent) :- grandparent(X, Y), grandparent(Y, X).    
 
 contradiction(self_child) :- child(X,X).                                            % Self-child contradiction
 contradiction(self_parent) :- parent(X, X).                                         % Self-parent contradiction
-contradiction(circular_cousin) :- cousin(X, X).                                     % Self-cousin contradiction
+contradiction(self_cousin) :- cousin(X, X).                                     % Self-cousin contradiction
 contradiction(self_grandparent) :- grandparent(X, X).                               % Self-grandparent contradiction
 contradiction(self_sibling) :- sibling(X, X).                                       % Self-sibling contradiction
 
