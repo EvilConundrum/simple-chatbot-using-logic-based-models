@@ -49,6 +49,12 @@ cousin(X, Y) :- child(X, W), child(Y, Z), sibling(W, Z), X \= Y, W \= Z.
 % Contradictions
 contradiction(circular_parent) :- parent(X, Y), parent(Y, X).                       % Circular parent-child relationship
 contradiction(circular_grandparent) :- grandparent(X, Y), grandparent(Y, X).        % Circular grandparent-grandchild relationship
+contradiction(circular_child) :- child(X, Y), child(Y, X).                          % Circular child relationship
+contradiction(circular_uncle) :- uncle(X, Y), uncle(Y, X).                          % Circular uncle relationship
+contradiction(circular_aunt) :- aunt(X, Y), aunt(Y, X).                             % Circular aunt relationship
+contradiction(circular_niece) :- niece(X, Y), niece(Y, X).                          % Circular niece relationship
+contradiction(circular_nephew) :- nephew(X, Y), nephew(Y, X).                       % Circular nephew relationship
+
 
 contradiction(self_child) :- child(X,X).                                            % Self-child contradiction
 contradiction(self_parent) :- parent(X, X).                                         % Self-parent contradiction
@@ -71,9 +77,10 @@ contradiction(incest_niece_nephew_parent) :- parent(X, Y), (uncle(Y, X) ; aunt(Y
 contradiction(incest_sibling_extended) :- sibling(X, Y), (uncle(X, Y) ; aunt(X, Y) ; niece(X, Y) ; nephew(X, Y)).       % Incest Sibling = Uncle/Aunt/Niece/Nephew
 
 contradiction(self_uncle) :- uncle(X, X).                                        % Self-uncle contradiction
-contradiction(self_aunt) :- aunt(X, X).                                      % Self-aunt contradiction
+contradiction(self_aunt) :- aunt(X, X).                                          % Self-aunt contradiction
 contradiction(self_nephew) :- nephew(X, X).                                      % Self-nephew contradiction
-contradiction(self_niece) :- niece(X, X).                                      % Self-niece contradiction
-contradiction(self_spouse) :- spouse(X, X).                                    % Self-spouse contradiction
-contradiction(self_child) :- child(X, X).                                    % Self-child contradiction
-contradiction(self_grandchild) :- grandchild(X, X).                                    % Self-grandchild contradiction
+contradiction(self_niece) :- niece(X, X).                                        % Self-niece contradiction
+contradiction(self_spouse) :- spouse(X, X).                                      % Self-spouse contradiction
+contradiction(self_child) :- child(X, X).                                        % Self-child contradiction
+contradiction(self_grandchild) :- grandchild(X, X).                              % Self-grandchild contradiction
+
