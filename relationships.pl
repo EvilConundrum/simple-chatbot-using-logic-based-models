@@ -69,18 +69,18 @@ contradiction(self_spouse) :- spouse(X, X).                                     
 contradiction(self_child) :- child(X, X).                                           % Self-child contradiction
 contradiction(self_grandchild) :- grandchild(X, X).                                 % Self-grandchild contradiction
 
-contradiction(gender_conflict) :- male(X), female(X).
+contradiction(gender_conflict) :- male(X), female(X).                               % Gender mismatch
 contradiction(sibling_and_parent) :- sibling(X, Y), parent(X, Y).                   % Sibling-parent contradiction
 contradiction(sibling_child) :- sibling(X, Y), child(X, Z), parent(Z, Y).           % Sibling-Child Contradiction
 
 contradiction(parent_gender_mismatch) :- parent(X, Y), male(X), mother(X, Y).       % Gender mismatch of mother
 contradiction(parent_gender_mismatch) :- parent(X, Y), female(X), father(X, Y).     % Gender mismatch of father
 contradiction(child_gender_mismatch) :- son(X, Y), female(X), parent(Y, X).         % Gender mismatch of son
-contradiction(child_gender_mismatch) :- daughter(X, Y), male(X), parent(Y, X).       % Gender mismatch of daugther
+contradiction(child_gender_mismatch) :- daughter(X, Y), male(X), parent(Y, X).      % Gender mismatch of daughter
 
 
-contradiction(incest_parent_child) :- parent(X, Y), (husband(X, Y) ; wife(X, Y)).        % Incest Parent X Child
-contradiction(incest_sibling) :- sibling(X, Y), (husband(X, Y) ; wife(X, Y)).            % Incest Sibling X Sibling
-contradiction(incest_grandparent) :- grandparent(X, Y), (husband(X, Y) ; wife(X, Y)).    % Incest Grandparent X Grandchild
+contradiction(incest_parent_child) :- parent(X, Y), (husband(X, Y) ; wife(X, Y)).                                       % Incest Parent X Child
+contradiction(incest_sibling) :- sibling(X, Y), (husband(X, Y) ; wife(X, Y)).                                           % Incest Sibling X Sibling
+contradiction(incest_grandparent) :- grandparent(X, Y), (husband(X, Y) ; wife(X, Y)).                                   % Incest Grandparent X Grandchild
 contradiction(incest_niece_nephew_parent) :- parent(X, Y), (uncle(Y, X) ; aunt(Y, X) ; niece(Y, X) ; nephew(Y, X)).     % Incest Uncle/Aunt/Niece/Nephew X Uncle/Aunt/Niece/Nephew
 contradiction(incest_sibling_extended) :- sibling(X, Y), (uncle(X, Y) ; aunt(X, Y) ; niece(X, Y) ; nephew(X, Y)).       % Incest Sibling = Uncle/Aunt/Niece/Nephew
