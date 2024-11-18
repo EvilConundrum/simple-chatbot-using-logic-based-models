@@ -12,7 +12,15 @@ def initialize_prolog():
 def add_fact(prolog, fact):
     try:
         prolog.assertz(fact)
-        return True
+
+        # Check for contradictions
+        contradictions = list(prolog.query("contradiction(Reason)"))
+        print("Contradictions found:", contradictions)  # Debug
+        if contradictions:
+            # If a contradiction is found, remove fact
+            prolog.retract(fact)
+            return False
+        return True,
     except Exception as e:
         return f"Error: {str(e)}"
 
