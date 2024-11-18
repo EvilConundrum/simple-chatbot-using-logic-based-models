@@ -493,6 +493,8 @@ def handle_question(prolog, question):
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"father('{parent1}', '{child}')")) and list(prolog.query(f"mother('{parent2}', '{child}')")) else "No!"
 
+    # TODO "Who are the parents of X?"
+
     # Handle "Is X a grandmother of Y?"
     grandmother_question_match = re.match(r"is ([a-z]+) a grandmother of ([a-z]+)\?", question)
     if grandmother_question_match:
@@ -512,6 +514,20 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"grandfather('{grandfather}', '{grandchild}')")) else "No!"
+
+    # TODO "Is X a daughter of Y?"
+
+    # TODO "Who are the daughters of X?"
+
+    # TODO "Is X a son of Y?"
+
+    # TODO "Who are the sons of X?"
+
+    # TODO "Is X a child of Y?"
+
+    # TODO "Who are the children of X?"
+
+    # TODO "Are X, Y, and Z children of P?"
 
     # Handle "Is X an aunt of Y?"
     aunt_question_match = re.match(r"is ([a-z]+) an aunt of ([a-z]+)\?", question)
