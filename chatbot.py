@@ -109,8 +109,6 @@ def handle_statement(prolog, statement):
         sib1, sib2 = sibling_match.groups()
         print(sib1, sib2) # DEBUG
 
-        # TODO add checks for contradictions
-
         # Add the facts
         add_sibling1 = add_fact(prolog, f"sibling('{sib1}', '{sib2}')")
         add_sibling2 = add_fact(prolog, f"sibling('{sib2}', '{sib1}')")
@@ -128,8 +126,6 @@ def handle_statement(prolog, statement):
         # Parse the input
         brother, person = brother_match.groups()
         print(brother, person) # DEBUG
-
-        # TODO add checks for contradictions
 
         # Add the facts
         add_sibling1 = add_fact(prolog, f"sibling('{brother}', '{person}')")
@@ -150,8 +146,6 @@ def handle_statement(prolog, statement):
         sister, person = sister_match.groups()
         print(sister, person) # DEBUG
 
-        # TODO add checks for contradictions
-
         # Add the facts
         add_sibling1 = add_fact(prolog, f"sibling('{sister}', '{person}')")
         add_sibling2 = add_fact(prolog, f"sibling('{person}', '{sister}')")
@@ -170,8 +164,6 @@ def handle_statement(prolog, statement):
         # Parse the input
         father, child = father_match.groups()
         print(father, child) # DEBUG
-
-        # TODO add checks for contradictions
 
         # Add the facts
         add_parent = add_fact(prolog, f"parent('{father}', '{child}')")
@@ -192,8 +184,6 @@ def handle_statement(prolog, statement):
         mother, child = mother_match.groups()
         print(mother, child) # DEBUG
 
-        # TODO add checks for contradictions
-
         # Add the facts
         add_parent = add_fact(prolog, f"parent('{mother}', '{child}')")
         add_child = add_fact(prolog, f"child('{child}', '{mother}')")
@@ -212,8 +202,6 @@ def handle_statement(prolog, statement):
         # Parse the input
         parent1, parent2, child = parents_match.groups()
         print(parent1, parent2, child) # DEBUG
-
-        # TODO add checks for contradictions
 
         # Add the facts
         add_parent1 = add_fact(prolog, f"parent('{parent1}', '{child}')")
@@ -235,8 +223,6 @@ def handle_statement(prolog, statement):
         grandmother, grandchild = grandmother_match.groups()
         print(grandmother, grandchild) # DEBUG
 
-        # TODO add checks for contradictions
-
         # Add the facts
         add_grandparent = add_fact(prolog, f"grandparent('{grandmother}', '{grandchild}')")
         add_grandchild = add_fact(prolog, f"grandchild('{grandchild}', '{grandmother}')")
@@ -255,8 +241,6 @@ def handle_statement(prolog, statement):
         # Parse the input
         grandfather, grandchild = grandfather_match.groups()
         print(grandfather, grandchild) # DEBUG
-
-        # TODO add checks for contradictions
 
         # Add the facts
         add_grandparent = add_fact(prolog, f"grandparent('{grandfather}', '{grandchild}')")
@@ -277,8 +261,6 @@ def handle_statement(prolog, statement):
         child, parent = child_match.groups()
         print(child, parent) # DEBUG
 
-        # TODO add checks for contradictions
-
         # Add the facts
         add_child = add_fact(prolog, f"child('{child}', '{parent}')")
         add_parent = add_fact(prolog, f"parent('{parent}', '{child}')")
@@ -296,8 +278,6 @@ def handle_statement(prolog, statement):
         # Parse the input
         child1, child2, child3, parent = children_match.groups()
         print(child1, child2, child3, parent) # DEBUG
-
-        # TODO add checks for contradictions
 
         # Add the facts
         add_child1 = add_fact(prolog, f"child('{child1}', '{parent}')")
@@ -321,8 +301,6 @@ def handle_statement(prolog, statement):
         daughter, parent = daughter_match.groups()
         print(daughter, parent) # DEBUG
 
-        # TODO add checks for contradictions
-
         # Add the facts
         add_child = add_fact(prolog, f"child('{daughter}', '{parent}')")
         add_parent = add_fact(prolog, f"parent('{parent}', '{daughter}')")
@@ -341,8 +319,6 @@ def handle_statement(prolog, statement):
         # Parse the input
         son, parent = son_match.groups()
         print(son, parent) # DEBUG
-
-        # TODO add checks for contradictions
 
         # Add the facts
         add_child = add_fact(prolog, f"child('{son}', '{parent}')")
@@ -363,8 +339,6 @@ def handle_statement(prolog, statement):
         uncle, person = uncle_match.groups()
         print(uncle, person) # DEBUG
 
-        # TODO add checks for contradictions
-
         # Add the facts
         add_uncle = add_fact(prolog, f"uncle('{uncle}', '{person}')")
         add_sex = add_fact(prolog, f"male('{uncle}')")
@@ -382,8 +356,6 @@ def handle_statement(prolog, statement):
         # Parse the input
         aunt, person = aunt_match.groups()
         print(aunt, person) # DEBUG
-
-        # TODO add checks for contradictions
 
         # Add the facts
         add_aunt = add_fact(prolog, f"aunt('{aunt}', '{person}')")
@@ -403,8 +375,6 @@ def handle_statement(prolog, statement):
         male = male_match.groups()[0]
         print(male)  # DEBUG
 
-        # TODO add checks for contradictions
-
         # Add the facts
         add_sex = add_fact(prolog, f"male('{male}')")
 
@@ -422,8 +392,6 @@ def handle_statement(prolog, statement):
         female = female_match.group()[0]
         print(female)  # DEBUG
 
-        # TODO add checks for contradictions
-
         # Add the facts
         add_sex = add_fact(prolog, f"female('{female}')")
 
@@ -440,8 +408,6 @@ def handle_statement(prolog, statement):
         # Parse the input
         cousin1, cousin2 = cousin_match.groups()
         print(cousin1, cousin2) # DEBUG
-
-        # TODO add checks for contradictions
 
         # Add the facts
         add_cousin1 = add_fact(prolog, f"cousin('{cousin1}', '{cousin2}')")
@@ -578,7 +544,7 @@ def handle_question(prolog, question):
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"father('{parent1}', '{child}')")) and list(prolog.query(f"mother('{parent2}', '{child}')")) else "No!"
 
-    # TODO "Who are the parents of X?"
+    # Handle "Who are the parents of X?"
     parents_of_question_match = re.match(r"who are the parents of ([a-z]+)\?", question)
     if parents_of_question_match:
         # Parse the input
@@ -642,7 +608,7 @@ def handle_question(prolog, question):
         return "Yes!" if list(prolog.query(f"child('{child}', '{parent}')")) else "No!"
     # TODO "Who are the children of X?"
     
-    # TODO "Are X, Y, and Z children of P?"
+    # Handle "Are X, Y, and Z children of P?"
     childrens_question_match = re.match(r"are ([a-z]+), ([a-z]+), and ([a-z]+) children of ([a-z]+)\?", question)
     if childrens_question_match:
         # Parse the input
