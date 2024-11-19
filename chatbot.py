@@ -634,6 +634,14 @@ def handle_question(prolog, question):
     # TODO "Who are the children of X?"
 
     # TODO "Are X, Y, and Z children of P?"
+    childrens_question_match = re.match(r"are ([a-z]+), ([a-z]+), and ([a-z]+) children of ([a-z]+)\?", question)
+    if childrens_question_match:
+        # Parse the input
+        child1, child2, child3,parent = childrens_question_match.groups()
+        print(child1, child2, child3, parent) # DEBUG
+
+        # Return appropriate output
+        return "Yes!" if list(prolog.query(f"child('{child1}', '{parent}')")) and list(prolog.query(f"child('{child2}', '{parent}')")) and list(prolog.query(f"child('{child3}', '{parent}')")) else "No!"
 
     # Handle "Is X an aunt of Y?"
     aunt_question_match = re.match(r"is ([a-z]+) an aunt of ([a-z]+)\?", question)
