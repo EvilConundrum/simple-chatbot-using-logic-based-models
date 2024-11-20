@@ -71,7 +71,8 @@ contradiction(self_child) :- child(X, X).                                       
 contradiction(self_grandchild) :- grandchild(X, X).                                 % Self-grandchild contradiction
 
 contradiction(sibling_and_parent) :- sibling(X, Y), parent(X, Y).                   % Sibling-parent contradiction
-contradiction(sibling_child) :- sibling(X, Y), child(X, Z), parent(Z, Y).           % Sibling-Child Contradiction
+% FIXME: Stops a person from having more than two children
+% contradiction(sibling_child) :- sibling(X, Y), child(X, Z), parent(Z, Y).           % Sibling-Child Contradiction
 
 contradiction(gender_conflict) :- male(X), female(X).                               % Gender mismatch
 contradiction(parent_gender_mismatch) :- parent(X, Y), male(X), mother(X, Y).       % Gender mismatch of mother
