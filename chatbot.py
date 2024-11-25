@@ -195,6 +195,25 @@ def handle_statement(prolog, statement):
         else:
             return "Oops! Something went wrong."
 
+    # Handle "X is the parent of Y"
+    parent_match = re.match(r"([a-z]+) is the parent of ([a-z]+)\.", statement)
+
+    if parent_match:
+        # Parse the input
+        parent, child = parent_match.groups()
+        print(parent, child) # DEBUG
+
+        # Add the facts
+        add_parent = add_fact(prolog, f"parent('{parent}', '{child}')")
+        add_child = add_fact(prolog, f"child('{child}', '{parent}')")
+
+        # Return appropriate output
+        if add_parent and add_child:
+            return "OK! I learned something."
+        else:
+            return "Oops! Something went wrong."
+
+
     # Handle "X and Y are the parents of Z"
     parents_match = re.match(r"([a-z]+) and ([a-z]+) are the parents of ([a-z]+)\.", statement)
 
@@ -263,10 +282,10 @@ def handle_statement(prolog, statement):
 
         # Add the facts
         add_child = add_fact(prolog, f"child('{child}', '{parent}')")
-        add_parent = add_fact(prolog, f"parent('{parent}', '{child}')")
+        #add_parent = add_fact(prolog, f"parent('{parent}', '{child}')")
 
         # Return appropriate output
-        if add_child and add_parent:
+        if add_child: # and add_parent:
             return "OK! I learned something."
         else:
             return "Oops! Something went wrong."
@@ -303,10 +322,13 @@ def handle_statement(prolog, statement):
 
         # Add the facts
         add_child = add_fact(prolog, f"child('{daughter}', '{parent}')")
+        # Commenting out because it adds an extra fact
         add_parent = add_fact(prolog, f"parent('{parent}', '{daughter}')")
         add_sex = add_fact(prolog, f"female('{daughter}')")
 
         # Return appropriate output
+
+        # Commenting out because it adds an extra fact
         if add_child and add_parent and add_sex:
             return "OK! I learned something."
         else:
@@ -322,10 +344,12 @@ def handle_statement(prolog, statement):
 
         # Add the facts
         add_child = add_fact(prolog, f"child('{son}', '{parent}')")
+        # Commenting out because it adds an extra fact
         add_parent = add_fact(prolog, f"parent('{parent}', '{son}')")
         add_sex = add_fact(prolog, f"male('{son}')")
 
         # Return appropriate output
+        # Commenting out because it adds an extra fact
         if add_child and add_parent and add_sex:
             return "OK! I learned something."
         else:
@@ -420,7 +444,7 @@ def handle_statement(prolog, statement):
             return "Oops! Something went wrong."
 
     # At the end of the function, refresh all facts
-    refresh_facts(prolog)
+    #refresh_facts(prolog)
 
     # Unrecognized pattern
     return "I apologize, I do not recognize your statement format."
@@ -584,7 +608,16 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"daughter('{daughter}', '{parent}')")) else "No!"
-    # TODO "Who are the daughters of X?"
+    # Handle "Who are the daughters of X?"
+    daughters_of_question_match = re.match(r"who are the daughters of ([a-z]+)\?", question)
+    if daughters_of_question_match:
+        # Parse the input
+        person = daughters_of_question_match.group(1)
+        print(person) # DEBUG
+
+        # Return appropriate output
+        daughters = list(prolog.query(f"daughter(X, '{person}')"))
+        return ", ".join([s['X'].capitalize() for s in daughters]) if daughters else "No daughters found."
     
     # Handle "Is X a son of Y?"
     son_question_match = re.match(r"is ([a-z]+) a son of ([a-z]+)\?", question)
@@ -595,7 +628,16 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"son('{son}', '{parent}')")) else "No!"
-    # TODO "Who are the sons of X?"
+    # Handle "Who are the sons of X?"
+    sons_of_question_match = re.match(r"who are the sons of ([a-z]+)\?", question)
+    if sons_of_question_match:
+        # Parse the input
+        person = sons_of_question_match.group(1)
+        print(person) # DEBUG
+
+        # Return appropriate output
+        sons = list(prolog.query(f"son(X, '{person}')"))
+        return ", ".join([s['X'].capitalize() for s in sons]) if sons else "No sons found."
 
     # Handle "Is X a child of Y?"
     child_question_match = re.match(r"is ([a-z]+) a child of ([a-z]+)\?", question)
@@ -606,8 +648,17 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"child('{child}', '{parent}')")) else "No!"
-    # TODO "Who are the children of X?"
-    
+    # Handle "Who are the children of X?"
+    children_of_question_match = re.match(r"who are the children of ([a-z]+)\?", question)
+    if children_of_question_match:
+        # Parse the input
+        person = children_of_question_match.group(1)
+        print(person)  # DEBUG
+
+        # Return appropriate output
+        children = list(prolog.query(f"child(X, '{person}')"))
+        return ", ".join([s['X'].capitalize() for s in children]) if children else "No children found."
+
     # Handle "Are X, Y, and Z children of P?"
     childrens_question_match = re.match(r"are ([a-z]+), ([a-z]+), and ([a-z]+) children of ([a-z]+)\?", question)
     if childrens_question_match:
@@ -649,7 +700,7 @@ def handle_question(prolog, question):
         return "Yes!" if list(prolog.query(f"relative('{person1}', '{person2}')")) else "No!"
 
     # At the end of the function, refresh all facts
-    refresh_facts(prolog)
+    #refresh_facts(prolog)
 
     return "I apologize, I do not understand the question."
 
@@ -676,7 +727,7 @@ def main():
             response = "Unrecognized input format."
 
         # Refresh all derived facts after processing user input
-        refresh_facts(prolog)
+        #refresh_facts(prolog)
 
         print("FamGPT:", response)
 
