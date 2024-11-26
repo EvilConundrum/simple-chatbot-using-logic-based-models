@@ -89,58 +89,58 @@ contradiction(incest_sibling_extended) :- sibling(X, Y), (uncle(X, Y) ; aunt(X, 
 
 % Family Contradiction
 
-contradiction(cousin_sibling_mismatch) :- cousin(X,Y), sibling(Y,X)                  % Family mismatch of cousin to sibling
-contradiction(cousin_child_mismatch) :- cousin(X,Y), child(Y,X)                      % Family mismatch of cousin to child
-contradiction(cousin_parent_mismatch) :- cousin(X,Y), parent(Y,X)                    % Family mismatch of cousin to parent
-contradiction(cousin_grandparent_mismatch) :- cousin(X,Y), grandparent(Y,X)          % Family mismatch of cousin to grandparent
-contradiction(cousin_uncle_mismatch) :- cousin(X,Y), uncle(Y,X)                      % Family mismatch of cousin to uncle
-contradiction(cousin_aunt_mismatch) :- cousin(X,Y), aunt(Y,X)                        % Family mismatch of cousin to aunt
+contradiction(cousin_sibling_mismatch) :- cousin(X,Y), sibling(Y,X).                  % Family mismatch of cousin to sibling
+contradiction(cousin_child_mismatch) :- cousin(X,Y), child(Y,X).                      % Family mismatch of cousin to child
+contradiction(cousin_parent_mismatch) :- cousin(X,Y), parent(Y,X).                    % Family mismatch of cousin to parent
+contradiction(cousin_grandparent_mismatch) :- cousin(X,Y), grandparent(Y,X).          % Family mismatch of cousin to grandparent
+contradiction(cousin_uncle_mismatch) :- cousin(X,Y), uncle(Y,X).                      % Family mismatch of cousin to uncle
+contradiction(cousin_aunt_mismatch) :- cousin(X,Y), aunt(Y,X).                        % Family mismatch of cousin to aunt
 
-contradiction(cousin_sibling_mismatch) :- cousin(X,Y), sibling(X,Y)                  % Family mismatch of cousin to sibling inverse
-contradiction(cousin_child_mismatch) :- cousin(X,Y), child(X,Y)                      % Family mismatch of cousin to child inverse
-contradiction(cousin_parent_mismatch) :- cousin(X,Y), parent(X,Y)                    % Family mismatch of cousin to parent inverse
-contradiction(cousin_grandparent_mismatch) :- cousin(X,Y), grandparent(X,Y)          % Family mismatch of cousin to grandparent inverse
-contradiction(cousin_uncle_mismatch) :- cousin(X,Y), uncle(X,Y)                      % Family mismatch of cousin to uncle inverse
-contradiction(cousin_aunt_mismatch) :- cousin(X,Y), aunt(X,Y)                        % Family mismatch of cousin to aunt inverse
+contradiction(cousin_sibling_mismatch) :- cousin(X,Y), sibling(X,Y).                  % Family mismatch of cousin to sibling inverse
+contradiction(cousin_child_mismatch) :- cousin(X,Y), child(X,Y).                      % Family mismatch of cousin to child inverse
+contradiction(cousin_parent_mismatch) :- cousin(X,Y), parent(X,Y).                    % Family mismatch of cousin to parent inverse
+contradiction(cousin_grandparent_mismatch) :- cousin(X,Y), grandparent(X,Y).          % Family mismatch of cousin to grandparent inverse
+contradiction(cousin_uncle_mismatch) :- cousin(X,Y), uncle(X,Y).                      % Family mismatch of cousin to uncle inverse
+contradiction(cousin_aunt_mismatch) :- cousin(X,Y), aunt(X,Y).                        % Family mismatch of cousin to aunt inverse
 
-contradiction(sibling_child_mismatch) :- sibling(X,Y), child(Y,X)                    % Family mismatch of sibling to child
-contradiction(sibling_parent_mismatch) :- sibling(X,Y), parent(Y,X)                  % Family mismatch of sibling to parent
-contradiction(sibling_grandparent_mismatch) :- sibling(X,Y), grandparent(Y,X)        % Family mismatch of sibling to grandparent
-contradiction(sibling_uncle_mismatch) :- sibling(X,Y), uncle(Y,X)                    % Family mismatch of sibling to uncle
-contradiction(sibling_aunt_mismatch) :- sibling(X,Y), aunt(Y,X)                      % Family mismatch of sibling to aunt
+contradiction(sibling_child_mismatch) :- sibling(X,Y), child(Y,X).                    % Family mismatch of sibling to child
+contradiction(sibling_parent_mismatch) :- sibling(X,Y), parent(Y,X).                  % Family mismatch of sibling to parent
+contradiction(sibling_grandparent_mismatch) :- sibling(X,Y), grandparent(Y,X).        % Family mismatch of sibling to grandparent
+contradiction(sibling_uncle_mismatch) :- sibling(X,Y), uncle(Y,X).                    % Family mismatch of sibling to uncle
+contradiction(sibling_aunt_mismatch) :- sibling(X,Y), aunt(Y,X).                      % Family mismatch of sibling to aunt
 
-contradiction(sibling_child_mismatch) :- sibling(X,Y), child(X,Y)                    % Family mismatch of sibling to child inverse
-contradiction(sibling_parent_mismatch) :- sibling(X,Y), parent(X,Y)                  % Family mismatch of sibling to parent inverse
-contradiction(sibling_grandparent_mismatch) :- sibling(X,Y), grandparent(X,Y)        % Family mismatch of sibling to grandparent inverse
-contradiction(sibling_uncle_mismatch) :- sibling(X,Y), uncle(X,Y)                    % Family mismatch of sibling to uncle inverse
-contradiction(sibling_aunt_mismatch) :- sibling(X,Y), aunt(X,Y)                      % Family mismatch of sibling to aunt inverse
+contradiction(sibling_child_mismatch) :- sibling(X,Y), child(X,Y).                    % Family mismatch of sibling to child inverse
+contradiction(sibling_parent_mismatch) :- sibling(X,Y), parent(X,Y).                  % Family mismatch of sibling to parent inverse
+contradiction(sibling_grandparent_mismatch) :- sibling(X,Y), grandparent(X,Y).        % Family mismatch of sibling to grandparent inverse
+contradiction(sibling_uncle_mismatch) :- sibling(X,Y), uncle(X,Y).                    % Family mismatch of sibling to uncle inverse
+contradiction(sibling_aunt_mismatch) :- sibling(X,Y), aunt(X,Y).                      % Family mismatch of sibling to aunt inverse
 
-contradiction(child_parent_mismatch) :- child(X,Y), parent(Y,X)                      % Family mismatch of child to parent
-contradiction(child_grandparent_mismatch) :- child(X,Y), grandparent(Y,X)            % Family mismatch of child to grandparent
-contradiction(child_uncle_mismatch) :- child(X,Y), uncle(Y,X)                        % Family mismatch of child to uncle
-contradiction(child_aunt_mismatch) :- child(X,Y), aunt(Y,X)                          % Family mismatch of child to aunt
+contradiction(child_parent_mismatch) :- child(X,Y), parent(Y,X).                      % Family mismatch of child to parent
+contradiction(child_grandparent_mismatch) :- child(X,Y), grandparent(Y,X).            % Family mismatch of child to grandparent
+contradiction(child_uncle_mismatch) :- child(X,Y), uncle(Y,X).                        % Family mismatch of child to uncle
+contradiction(child_aunt_mismatch) :- child(X,Y), aunt(Y,X).                          % Family mismatch of child to aunt
 
-contradiction(child_parent_mismatch) :- child(X,Y), parent(X,Y)                      % Family mismatch of child to parent inverse
-contradiction(child_grandparent_mismatch) :- child(X,Y), grandparent(X,Y)            % Family mismatch of child to grandparent inverse
-contradiction(child_uncle_mismatch) :- child(X,Y), uncle(X,Y)                        % Family mismatch of child to uncle inverse
-contradiction(child_aunt_mismatch) :- child(X,Y), aunt(X,Y)                          % Family mismatch of child to aunt inverse
+contradiction(child_parent_mismatch) :- child(X,Y), parent(X,Y).                      % Family mismatch of child to parent inverse
+contradiction(child_grandparent_mismatch) :- child(X,Y), grandparent(X,Y).            % Family mismatch of child to grandparent inverse
+contradiction(child_uncle_mismatch) :- child(X,Y), uncle(X,Y).                        % Family mismatch of child to uncle inverse
+contradiction(child_aunt_mismatch) :- child(X,Y), aunt(X,Y).                          % Family mismatch of child to aunt inverse
 
-contradiction(parent_grandparent_mismatch) :- parent(X,Y), grandparent(Y,X)          % Family mismatch of parent to grandparent
-contradiction(parent_uncle_mismatch) :- parent(X,Y), uncle(Y,X)                      % Family mismatch of parent to uncle
-contradiction(parent_aunt_mismatch) :- parent(X,Y), aunt(Y,X)                        % Family mismatch of parent to aunt
+contradiction(parent_grandparent_mismatch) :- parent(X,Y), grandparent(Y,X).          % Family mismatch of parent to grandparent
+contradiction(parent_uncle_mismatch) :- parent(X,Y), uncle(Y,X).                      % Family mismatch of parent to uncle
+contradiction(parent_aunt_mismatch) :- parent(X,Y), aunt(Y,X).                        % Family mismatch of parent to aunt
 
-contradiction(parent_grandparent_mismatch) :- parent(X,Y), grandparent(X,Y)          % Family mismatch of parent to grandparent inverse
-contradiction(parent_uncle_mismatch) :- parent(X,Y), uncle(X,Y)                      % Family mismatch of parent to uncle inverse
-contradiction(parent_aunt_mismatch) :- parent(X,Y), aunt(X,Y)                        % Family mismatch of parent to aunt inverse
+contradiction(parent_grandparent_mismatch) :- parent(X,Y), grandparent(X,Y).          % Family mismatch of parent to grandparent inverse
+contradiction(parent_uncle_mismatch) :- parent(X,Y), uncle(X,Y).                      % Family mismatch of parent to uncle inverse
+contradiction(parent_aunt_mismatch) :- parent(X,Y), aunt(X,Y).                        % Family mismatch of parent to aunt inverse
 
-contradiction(grandparent_uncle_mismatch) :- grandparent(X,Y), uncle(Y,X)            % Family mismatch of grandparent to uncle
-contradiction(grandparent_aunt_mismatch) :- grandparent(X,Y), aunt(Y,X)              % Family mismatch of grandparent to aunt
+contradiction(grandparent_uncle_mismatch) :- grandparent(X,Y), uncle(Y,X).            % Family mismatch of grandparent to uncle
+contradiction(grandparent_aunt_mismatch) :- grandparent(X,Y), aunt(Y,X).              % Family mismatch of grandparent to aunt
 
-contradiction(grandparent_uncle_mismatch) :- grandparent(X,Y), uncle(X,Y)            % Family mismatch of grandparent to uncle inverse
-contradiction(grandparent_aunt_mismatch) :- grandparent(X,Y), aunt(X,Y)              % Family mismatch of grandparent to aunt inverse
+contradiction(grandparent_uncle_mismatch) :- grandparent(X,Y), uncle(X,Y).            % Family mismatch of grandparent to uncle inverse
+contradiction(grandparent_aunt_mismatch) :- grandparent(X,Y), aunt(X,Y).              % Family mismatch of grandparent to aunt inverse
 
-contradiction(uncle_aunt_mismatch) :- uncle(X,Y), aunt(Y,X)                          % Family mismatch of uncle to aunt
-contradiction(aunt_uncle_mismatch) :- aunt(Y,X), uncle(Y,X)                          % Family mismatch of aunt to uncle
+contradiction(uncle_aunt_mismatch) :- uncle(X,Y), aunt(Y,X).                          % Family mismatch of uncle to aunt
+contradiction(aunt_uncle_mismatch) :- aunt(Y,X), uncle(Y,X).                          % Family mismatch of aunt to uncle
 
-contradiction(uncle_aunt_mismatch) :- uncle(X,Y), aunt(X,Y)                          % Family mismatch of uncle to aunt inverse
-contradiction(aunt_uncle_mismatch) :- aunt(Y,X), uncle(X,Y)                          % Family mismatch of aunt to uncle inverse
+contradiction(uncle_aunt_mismatch) :- uncle(X,Y), aunt(X,Y).                          % Family mismatch of uncle to aunt inverse
+contradiction(aunt_uncle_mismatch) :- aunt(Y,X), uncle(X,Y).                          % Family mismatch of aunt to uncle inverse
