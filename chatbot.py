@@ -282,10 +282,10 @@ def handle_statement(prolog, statement):
 
         # Add the facts
         add_child = add_fact(prolog, f"child('{child}', '{parent}')")
-        #add_parent = add_fact(prolog, f"parent('{parent}', '{child}')")
+        add_parent = add_fact(prolog, f"parent('{parent}', '{child}')")
 
         # Return appropriate output
-        if add_child: # and add_parent:
+        if add_child and add_parent:
             return "OK! I learned something."
         else:
             return "Oops! Something went wrong."
