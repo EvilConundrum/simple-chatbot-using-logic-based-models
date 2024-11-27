@@ -24,58 +24,58 @@ def add_fact(prolog, fact):
     except Exception as e:
         return f"Error: {str(e)}"
 
-def refresh_facts(prolog):
+# def refresh_facts(prolog):
 
-    # Clear old derived facts
-    prolog.retractall("grandparent(_, _)")
-    prolog.retractall("sibling(_, _)")
-    prolog.retractall("uncle(_, _)")
-    prolog.retractall("aunt(_, _)")
-    prolog.retractall("cousin(_, _)")
-    prolog.retractall("niece(_, _)")
-    prolog.retractall("nephew(_, _)")
+#     # Clear old derived facts
+#     prolog.retractall("grandparent(_, _)")
+#     prolog.retractall("sibling(_, _)")
+#     prolog.retractall("uncle(_, _)")
+#     prolog.retractall("aunt(_, _)")
+#     prolog.retractall("cousin(_, _)")
+#     prolog.retractall("niece(_, _)")
+#     prolog.retractall("nephew(_, _)")
 
-    # Update grandparent relationships
-    parent_relationships = list(prolog.query("parent(X, Y)"))
-    for relation in parent_relationships:
-        X = relation["X"]
-        Y = relation["Y"]
-        grandparents = list(prolog.query(f"parent({Y}, Z)"))
-        for grandparent in grandparents:
-            Z = grandparent["Z"]
-            prolog.assertz(f"grandparent('{X}', '{Z}')")
+#     # Update grandparent relationships
+#     parent_relationships = list(prolog.query("parent(X, Y)"))
+#     for relation in parent_relationships:
+#         X = relation["X"]
+#         Y = relation["Y"]
+#         grandparents = list(prolog.query(f"parent({Y}, Z)"))
+#         for grandparent in grandparents:
+#             Z = grandparent["Z"]
+#             prolog.assertz(f"grandparent('{X}', '{Z}')")
 
-    # Update sibling relationships
-    for rel1 in parent_relationships:
-        for rel2 in parent_relationships:
-            if rel1["X"] == rel2["X"] and rel1["Y"] != rel2["Y"]:  # Shared parent, different children
-                prolog.assertz(f"sibling('{rel1['Y']}', '{rel2['Y']}')")
+#     # Update sibling relationships
+#     for rel1 in parent_relationships:
+#         for rel2 in parent_relationships:
+#             if rel1["X"] == rel2["X"] and rel1["Y"] != rel2["Y"]:  # Shared parent, different children
+#                 prolog.assertz(f"sibling('{rel1['Y']}', '{rel2['Y']}')")
 
-    # Update uncle/aunt relationships
-    for rel1 in parent_relationships:
-        for rel2 in parent_relationships:
-            if rel1["Y"] != rel2["Y"] and rel1["X"] == rel2["X"]:  # Shared parent, different children
-                siblings = list(prolog.query(f"sibling('{rel1['X']}', Z)"))
-                for sibling in siblings:
-                    S = sibling["Z"]
-                    prolog.assertz(f"uncle('{S}', '{rel2['Y']}')") if list(prolog.query(f"male('{S}')")) else None
-                    prolog.assertz(f"aunt('{S}', '{rel2['Y']}')") if list(prolog.query(f"female('{S}')")) else None
+#     # Update uncle/aunt relationships
+#     for rel1 in parent_relationships:
+#         for rel2 in parent_relationships:
+#             if rel1["Y"] != rel2["Y"] and rel1["X"] == rel2["X"]:  # Shared parent, different children
+#                 siblings = list(prolog.query(f"sibling('{rel1['X']}', Z)"))
+#                 for sibling in siblings:
+#                     S = sibling["Z"]
+#                     prolog.assertz(f"uncle('{S}', '{rel2['Y']}')") if list(prolog.query(f"male('{S}')")) else None
+#                     prolog.assertz(f"aunt('{S}', '{rel2['Y']}')") if list(prolog.query(f"female('{S}')")) else None
 
-    # Update cousin relationships
-    for rel1 in parent_relationships:
-        for rel2 in parent_relationships:
-            if rel1["Y"] != rel2["Y"]:  # Different children
-                shared_grandparents = list(prolog.query(f"grandparent(G, '{rel1['Y']}'), grandparent(G, '{rel2['Y']}')"))
-                if shared_grandparents:
-                    prolog.assertz(f"cousin('{rel1['Y']}', '{rel2['Y']}')")
+#     # Update cousin relationships
+#     for rel1 in parent_relationships:
+#         for rel2 in parent_relationships:
+#             if rel1["Y"] != rel2["Y"]:  # Different children
+#                 shared_grandparents = list(prolog.query(f"grandparent(G, '{rel1['Y']}'), grandparent(G, '{rel2['Y']}')"))
+#                 if shared_grandparents:
+#                     prolog.assertz(f"cousin('{rel1['Y']}', '{rel2['Y']}')")
 
-    # Update niece/nephew relationships
-    for rel1 in parent_relationships:
-        siblings = list(prolog.query(f"sibling('{rel1['X']}', Z)"))
-        for sibling in siblings:
-            S = sibling["Z"]
-            prolog.assertz(f"niece('{rel1['Y']}', '{S}')") if list(prolog.query(f"female('{rel1['Y']}')")) else None
-            prolog.assertz(f"nephew('{rel1['Y']}', '{S}')") if list(prolog.query(f"male('{rel1['Y']}')")) else None
+#     # Update niece/nephew relationships
+#     for rel1 in parent_relationships:
+#         siblings = list(prolog.query(f"sibling('{rel1['X']}', Z)"))
+#         for sibling in siblings:
+#             S = sibling["Z"]
+#             prolog.assertz(f"niece('{rel1['Y']}', '{S}')") if list(prolog.query(f"female('{rel1['Y']}')")) else None
+#             prolog.assertz(f"nephew('{rel1['Y']}', '{S}')") if list(prolog.query(f"male('{rel1['Y']}')")) else None
 
 
 def handle_help():
@@ -462,7 +462,7 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"sibling('{sib1}', '{sib2}')")) else "No!"
-
+    
     # Handle "Who are the siblings of X?"
     siblings_question_match = re.match(r"who are the siblings of ([a-z]+)\?", question)
     if siblings_question_match:
@@ -608,6 +608,7 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"daughter('{daughter}', '{parent}')")) else "No!"
+    # TODO: add functionality to remove duplicates
     # Handle "Who are the daughters of X?"
     daughters_of_question_match = re.match(r"who are the daughters of ([a-z]+)\?", question)
     if daughters_of_question_match:
@@ -617,7 +618,7 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         daughters = list(prolog.query(f"daughter(X, '{person}')"))
-        return ", ".join([s['X'].capitalize() for s in daughters]) if daughters else "No daughters found."
+        return ", ".join(set([s['X'].capitalize() for s in daughters])) if daughters else "No daughters found."
     
     # Handle "Is X a son of Y?"
     son_question_match = re.match(r"is ([a-z]+) a son of ([a-z]+)\?", question)
@@ -628,6 +629,7 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"son('{son}', '{parent}')")) else "No!"
+    # TODO: add functionality to remove duplicates
     # Handle "Who are the sons of X?"
     sons_of_question_match = re.match(r"who are the sons of ([a-z]+)\?", question)
     if sons_of_question_match:
@@ -637,7 +639,7 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         sons = list(prolog.query(f"son(X, '{person}')"))
-        return ", ".join([s['X'].capitalize() for s in sons]) if sons else "No sons found."
+        return ", ".join(set([s['X'].capitalize() for s in sons])) if sons else "No sons found."
 
     # Handle "Is X a child of Y?"
     child_question_match = re.match(r"is ([a-z]+) a child of ([a-z]+)\?", question)
@@ -648,6 +650,7 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"child('{child}', '{parent}')")) else "No!"
+    # TODO: add functionality to remove duplicates
     # Handle "Who are the children of X?"
     children_of_question_match = re.match(r"who are the children of ([a-z]+)\?", question)
     if children_of_question_match:
@@ -657,7 +660,7 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         children = list(prolog.query(f"child(X, '{person}')"))
-        return ", ".join([s['X'].capitalize() for s in children]) if children else "No children found."
+        return ", ".join(set([s['X'].capitalize() for s in children])) if children else "No children found."
 
     # Handle "Are X, Y, and Z children of P?"
     childrens_question_match = re.match(r"are ([a-z]+), ([a-z]+), and ([a-z]+) children of ([a-z]+)\?", question)
