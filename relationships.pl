@@ -12,6 +12,7 @@
 :- dynamic niece/2.
 :- dynamic nephew/2.
 :- dynamic cousin/2.
+:- dynamic relative/2.
 
 relative(X, Y) :- parent(X, Y).      % X is a parent of Y
 relative(X, Y) :- parent(Y, X).      % Y is a parent of X
