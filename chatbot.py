@@ -15,7 +15,7 @@ def add_fact(prolog, fact):
 
         # Check for contradictions
         contradictions = list(prolog.query("contradiction(Reason)"))
-        print("Contradictions found:", contradictions)  # Debug
+        #print("Contradictions found:", contradictions)  # Debug
         if contradictions:
             # If a contradiction is found, remove fact
             prolog.retract(fact)
@@ -23,60 +23,6 @@ def add_fact(prolog, fact):
         return True,
     except Exception as e:
         return f"Error: {str(e)}"
-
-# def refresh_facts(prolog):
-
-#     # Clear old derived facts
-#     prolog.retractall("grandparent(_, _)")
-#     prolog.retractall("sibling(_, _)")
-#     prolog.retractall("uncle(_, _)")
-#     prolog.retractall("aunt(_, _)")
-#     prolog.retractall("cousin(_, _)")
-#     prolog.retractall("niece(_, _)")
-#     prolog.retractall("nephew(_, _)")
-
-#     # Update grandparent relationships
-#     parent_relationships = list(prolog.query("parent(X, Y)"))
-#     for relation in parent_relationships:
-#         X = relation["X"]
-#         Y = relation["Y"]
-#         grandparents = list(prolog.query(f"parent({Y}, Z)"))
-#         for grandparent in grandparents:
-#             Z = grandparent["Z"]
-#             prolog.assertz(f"grandparent('{X}', '{Z}')")
-
-#     # Update sibling relationships
-#     for rel1 in parent_relationships:
-#         for rel2 in parent_relationships:
-#             if rel1["X"] == rel2["X"] and rel1["Y"] != rel2["Y"]:  # Shared parent, different children
-#                 prolog.assertz(f"sibling('{rel1['Y']}', '{rel2['Y']}')")
-
-#     # Update uncle/aunt relationships
-#     for rel1 in parent_relationships:
-#         for rel2 in parent_relationships:
-#             if rel1["Y"] != rel2["Y"] and rel1["X"] == rel2["X"]:  # Shared parent, different children
-#                 siblings = list(prolog.query(f"sibling('{rel1['X']}', Z)"))
-#                 for sibling in siblings:
-#                     S = sibling["Z"]
-#                     prolog.assertz(f"uncle('{S}', '{rel2['Y']}')") if list(prolog.query(f"male('{S}')")) else None
-#                     prolog.assertz(f"aunt('{S}', '{rel2['Y']}')") if list(prolog.query(f"female('{S}')")) else None
-
-#     # Update cousin relationships
-#     for rel1 in parent_relationships:
-#         for rel2 in parent_relationships:
-#             if rel1["Y"] != rel2["Y"]:  # Different children
-#                 shared_grandparents = list(prolog.query(f"grandparent(G, '{rel1['Y']}'), grandparent(G, '{rel2['Y']}')"))
-#                 if shared_grandparents:
-#                     prolog.assertz(f"cousin('{rel1['Y']}', '{rel2['Y']}')")
-
-#     # Update niece/nephew relationships
-#     for rel1 in parent_relationships:
-#         siblings = list(prolog.query(f"sibling('{rel1['X']}', Z)"))
-#         for sibling in siblings:
-#             S = sibling["Z"]
-#             prolog.assertz(f"niece('{rel1['Y']}', '{S}')") if list(prolog.query(f"female('{rel1['Y']}')")) else None
-#             prolog.assertz(f"nephew('{rel1['Y']}', '{S}')") if list(prolog.query(f"male('{rel1['Y']}')")) else None
-
 
 def handle_help():
     print("\nStatement Prompts:")
@@ -473,9 +419,6 @@ def handle_statement(prolog, statement):
         else:
             return "Oops! Something went wrong."
 
-    # At the end of the function, refresh all facts
-    #refresh_facts(prolog)
-
     # Unrecognized pattern
     return "I apologize, I do not recognize your statement format."
 
@@ -638,7 +581,6 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"daughter('{daughter}', '{parent}')")) else "No!"
-    # TODO: add functionality to remove duplicates
     # Handle "Who are the daughters of X?"
     daughters_of_question_match = re.match(r"who are the daughters of ([a-z]+)\?", question)
     if daughters_of_question_match:
@@ -659,7 +601,6 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"son('{son}', '{parent}')")) else "No!"
-    # TODO: add functionality to remove duplicates
     # Handle "Who are the sons of X?"
     sons_of_question_match = re.match(r"who are the sons of ([a-z]+)\?", question)
     if sons_of_question_match:
@@ -680,7 +621,6 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"child('{child}', '{parent}')")) else "No!"
-    # TODO: add functionality to remove duplicates
     # Handle "Who are the children of X?"
     children_of_question_match = re.match(r"who are the children of ([a-z]+)\?", question)
     if children_of_question_match:
@@ -732,9 +672,6 @@ def handle_question(prolog, question):
         # Return appropriate output
         return "Yes!" if list(prolog.query(f"relative('{person1}', '{person2}')")) else "No!"
 
-    # At the end of the function, refresh all facts
-    #refresh_facts(prolog)
-
     return "I apologize, I do not understand the question."
 
 def main():
@@ -758,9 +695,6 @@ def main():
             response = handle_statement(prolog, user_input)
         else:
             response = "Unrecognized input format."
-
-        # Refresh all derived facts after processing user input
-        #refresh_facts(prolog)
 
         print("FamGPT:", response)
 
