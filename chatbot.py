@@ -389,7 +389,7 @@ def handle_statement(prolog, statement):
 
     if female_match:
         # Parse the input
-        female = female_match.group()[0]
+        female = female_match.groups()[0]
         print(female)  # DEBUG
 
         # Add the facts
