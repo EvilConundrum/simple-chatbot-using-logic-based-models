@@ -115,7 +115,8 @@ contradiction(sibling_grandparent_mismatch) :- sibling(X,Y), grandparent(X,Y).  
 contradiction(sibling_uncle_mismatch) :- sibling(X,Y), uncle(X,Y).                    % Family mismatch of sibling to uncle inverse
 contradiction(sibling_aunt_mismatch) :- sibling(X,Y), aunt(X,Y).                      % Family mismatch of sibling to aunt inverse
 
-contradiction(child_parent_mismatch) :- child(X,Y), parent(Y,X).                      % Family mismatch of child to parent
+
+% contradiction(child_parent_mismatch) :- child(X,Y), parent(Y,X).                      % Family mismatch of child to parent
 contradiction(child_grandparent_mismatch) :- child(X,Y), grandparent(Y,X).            % Family mismatch of child to grandparent
 contradiction(child_uncle_mismatch) :- child(X,Y), uncle(Y,X).                        % Family mismatch of child to uncle
 contradiction(child_aunt_mismatch) :- child(X,Y), aunt(Y,X).                          % Family mismatch of child to aunt
