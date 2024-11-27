@@ -85,6 +85,7 @@ def handle_help():
     print("\t___ is a sister of ___.")
     print("\t___ is the father of ___.")
     print("\t___ is the mother of ___.")
+    print("\t___ is the parent of ___.\n")
     print("\t___ and ___ are the parents of ___.")
     print("\t___ is a grandmother of ___.")
     print("\t___ is a grandfather of ___.")
@@ -94,6 +95,35 @@ def handle_help():
     print("\t___ is a son of ___.")
     print("\t___ is an uncle of ___.")
     print("\t___ is an aunt of ___.\n")
+    print("\t___ and ___ are cousins.\n")
+    print("\t___ is a male.\n")
+    print("\t___ is a female.\n")
+
+    print("\nQuestion Prompts:")
+    print("\tAre ___ and ___ siblings?")
+    print("\tWho are the siblings of ___?")
+    print("\tIs ___ a sister of ___?")
+    print("\tWho are the sisters of ___?")
+    print("\tIs ___ a brother of ___?")
+    print("\tWho are the brothers of ___?")
+    print("\tIs ___ the mother of ___?")
+    print("\tWho is the mother of ___?")
+    print("\tIs ___ the father of ___?")
+    print("\tWho is the father of ___?")
+    print("\tAre ___ and ___ the parents of ___?")
+    print("\tWho are the parents of ___?")
+    print("\tIs ___ a grandmother of ___?")
+    print("\tIs ___ a grandfather of ___?")
+    print("\tIs ___ a daughter of ___?")
+    print("\tWho are the daughters of ___?")
+    print("\tIs ___ a son of ___?")
+    print("\tWho are the sons of ___?")
+    print("\tIs ___ a child of ___?")
+    print("\tWho are the children of ___?")
+    print("\tAre ___, ___, and ___ children of ___?")
+    print("\tIs ___ an aunt of ___?")
+    print("\tIs ___ an uncle of ___?")
+    print("\tAre ___ and ___ relatives?\n")
 
     return "To start, try to input any one of these statements!"
 
@@ -408,7 +438,7 @@ def handle_statement(prolog, statement):
         else:
             return "Oops! Something went wrong."
 
-    # Handle "X is an aunt of Y"
+    # Handle "X is a female"
     female_match = re.match(r"([a-z]+) is a female\.", statement)
 
     if female_match:
