@@ -36,7 +36,7 @@ def handle_help():
     print("\t___ is a grandmother of ___.")
     print("\t___ is a grandfather of ___.")
     print("\t___ is a child of ___.")
-    print("\t___, ___ and ___ are children of ___.")
+    print("\t___, ___, and ___ are children of ___.")
     print("\t___ is a daughter of ___.")
     print("\t___ is a son of ___.")
     print("\t___ is an uncle of ___.")
@@ -445,7 +445,7 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         siblings = list(prolog.query(f"sibling(X, '{person}')"))
-        return ", ".join([s['X'].capitalize() for s in siblings]) if siblings else "No siblings found."
+        return ", ".join(set([s['X'].capitalize() for s in siblings])) if siblings else "No siblings found."
 
     # Handle "Is X a sister of Y?"
     sister_question_match = re.match(r"is ([a-z]+) a sister of ([a-z]+)\?", question)
@@ -466,7 +466,7 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         sisters = list(prolog.query(f"sister(X, '{person}')"))
-        return ", ".join([s['X'].capitalize() for s in sisters]) if sisters else "No sisters found."
+        return ", ".join(set([s['X'].capitalize() for s in sisters])) if sisters else "No sisters found."
 
     # Handle "Is X a brother of Y?"
     brother_question_match = re.match(r"is ([a-z]+) a brother of ([a-z]+)\?", question)
@@ -487,7 +487,7 @@ def handle_question(prolog, question):
 
         # Return appropriate output
         brothers = list(prolog.query(f"brother(X, '{person}')"))
-        return ", ".join([s['X'].capitalize() for s in brothers]) if brothers else "No brothers found."
+        return ", ".join(set([s['X'].capitalize() for s in brothers])) if brothers else "No brothers found."
 
     # Handle "Is X the mother of Y?"
     mother_question_match = re.match(r"is ([a-z]+) the mother of ([a-z]+)\?", question)
