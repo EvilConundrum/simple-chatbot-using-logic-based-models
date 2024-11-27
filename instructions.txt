@@ -1,0 +1,23 @@
+INSTRUCTIONS ARE FOR WINDOWS
+
+1. After extracting the zip files, open the terminal 
+    and navigate to the folder where the files are extracted.
+
+2. Create a python virtual environment by running the following command:
+    python3 -m venv venv
+    or
+    python -m venv venv
+
+    "venv" can be replaced with any name you want to give to the virtual environment.
+
+3. Activate the virtual environment by running the following command:
+    venv\Scripts\activate
+
+4. Install the required packages by running the following command:
+    pip install -r requirements.txt
+
+5. Run the following command to start the application:
+    python chatbot.py
+
+6. To deactivate the virtual environment, run the following command:
+    deactivate
