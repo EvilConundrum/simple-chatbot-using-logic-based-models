@@ -12,6 +12,7 @@
 :- dynamic niece/2.
 :- dynamic nephew/2.
 :- dynamic cousin/2.
+:- dynamic relative/2.
 
 relative(X, Y) :- parent(X, Y).      % X is a parent of Y
 relative(X, Y) :- parent(Y, X).      % Y is a parent of X
@@ -80,8 +81,6 @@ contradiction(self_child) :- child(X, X).                                       
 contradiction(self_grandchild) :- grandchild(X, X).                                 % Self-grandchild contradiction
 
 contradiction(sibling_and_parent) :- sibling(X, Y), parent(X, Y).                   % Sibling-parent contradiction
-% FIXME: Stops a person from having more than two children
-% contradiction(sibling_child) :- sibling(X, Y), child(X, Z), parent(Z, Y).           % Sibling-Child Contradiction
 
 contradiction(gender_conflict) :- male(X), female(X).                               % Gender mismatch
 contradiction(parent_gender_mismatch) :- parent(X, Y), male(X), mother(X, Y).       % Gender mismatch of mother
@@ -125,7 +124,6 @@ contradiction(sibling_uncle_mismatch) :- sibling(X,Y), uncle(X,Y).              
 contradiction(sibling_aunt_mismatch) :- sibling(X,Y), aunt(X,Y).                      % Family mismatch of sibling to aunt inverse
 
 
-% contradiction(child_parent_mismatch) :- child(X,Y), parent(Y,X).                      % Family mismatch of child to parent
 contradiction(child_grandparent_mismatch) :- child(X,Y), grandparent(Y,X).            % Family mismatch of child to grandparent
 contradiction(child_uncle_mismatch) :- child(X,Y), uncle(Y,X).                        % Family mismatch of child to uncle
 contradiction(child_aunt_mismatch) :- child(X,Y), aunt(Y,X).                          % Family mismatch of child to aunt
@@ -154,3 +152,8 @@ contradiction(aunt_uncle_mismatch) :- aunt(Y,X), uncle(Y,X).                    
 
 contradiction(uncle_aunt_mismatch) :- uncle(X,Y), aunt(X,Y).                          % Family mismatch of uncle to aunt inverse
 contradiction(aunt_uncle_mismatch) :- aunt(Y,X), uncle(X,Y).                          % Family mismatch of aunt to uncle inverse
+
+contradiction(too_many_parents) :- child(X, P1), child(X, P2), child(X, P3),P1 \= P2, P2 \= P3, P1 \= P3.
+
+contradiction(too_many_grandmothers) :- grandmother(P1, X), grandmother(P2, X), grandmother(P3, X),P1 \= P2, P2 \= P3, P1 \= P3.
+contradiction(too_many_grandfathers) :- grandfather(P1, X), grandfather(P2, X), grandfather(P3, X),P1 \= P2, P2 \= P3, P1 \= P3.
