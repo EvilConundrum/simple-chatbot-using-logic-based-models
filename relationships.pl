@@ -13,6 +13,15 @@
 :- dynamic nephew/2.
 :- dynamic cousin/2.
 
+relative(X, Y) :- parent(X, Y).      % X is a parent of Y
+relative(X, Y) :- parent(Y, X).      % Y is a parent of X
+relative(X, Y) :- sibling(X, Y).     % X and Y are siblings
+relative(X, Y) :- grandparent(X, Y). % X is a grandparent of Y
+relative(X, Y) :- grandchild(X, Y).  % X is a grandchild of Y
+relative(X, Y) :- uncle(X, Y).       % X is an uncle of Y
+relative(X, Y) :- aunt(X, Y).        % X is an aunt of Y
+relative(X, Y) :- cousin(X, Y).      % X is a cousin of Ys
+
 % Molecules with Inferences
 father(X, Y) :- parent(X, Y), male(X).
 mother(X, Y) :- parent(X, Y), female(X).
