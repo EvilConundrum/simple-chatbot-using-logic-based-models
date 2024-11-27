@@ -155,3 +155,5 @@ contradiction(aunt_uncle_mismatch) :- aunt(Y,X), uncle(Y,X).                    
 
 contradiction(uncle_aunt_mismatch) :- uncle(X,Y), aunt(X,Y).                          % Family mismatch of uncle to aunt inverse
 contradiction(aunt_uncle_mismatch) :- aunt(Y,X), uncle(X,Y).                          % Family mismatch of aunt to uncle inverse
+
+contradiction(too_many_parents) :- child(X, P1), child(X, P2), child(X, P3),P1 \= P2, P2 \= P3, P1 \= P3.
